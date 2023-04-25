@@ -14,7 +14,7 @@
             app:destination="@+id/loginFragment" />
         <action
             android:id="@+id/action_registerFragment_to_userDetailsFragment"
-            app:destination="@id/userDetailsFragment" />
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -28,16 +28,47 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_loginFragment_to_userDetailsFragment"
-            app:destination="@id/userDetailsFragment" />
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/userDetailsFragment"
-        android:name="com.ebinumer.inventorymodule.ui.UserDetailsFragment"
-        android:label="userView"
-        tools:layout="@layout/user_details_fragment">
+        android:id="@+id/homeFragment"
+        android:name="com.ebinumer.inventorymodule.ui.HomeFragment"
+        android:label="home_View"
+        tools:layout="@layout/home_fragment">
 
         <action
             android:id="@+id/action_userDetailsFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_registerGoodsFragment"
+            app:destination="@id/registerGoodsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_viewGoodsFragment"
+            app:destination="@id/viewGoodsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerGoodsFragment"
+        android:name="com.ebinumer.inventorymodule.ui.RegisterGrnFragment"
+        android:label="register_View"
+        tools:layout="@layout/register_goods_fragment">
+
+        <action
+            android:id="@+id/action_registerGoodsFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@+id/homeFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/viewGoodsFragment"
+        android:name="com.ebinumer.inventorymodule.ui.ViewGrnFragment"
+        android:label="grn_view"
+        tools:layout="@layout/view_grn_fragment">
+
+        <action
+            android:id="@+id/action_viewFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@+id/homeFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

@@ -8,7 +8,10 @@ import com.ebinumer.inventorymodule.R
 import com.ebinumer.inventorymodule.data.dataBase.GrnItemsEntity
 import com.ebinumer.inventorymodule.databinding.GrnItemBinding
 
-class GRNItemsAdapter(private  var grnData:List<GrnItemsEntity>): RecyclerView.Adapter<GRNItemsAdapter.MyViewHolder>() {
+class GRNItemsAdapter(private var grnData:List<GrnItemsEntity>,
+                      var onItemDltClicked: (GrnItemsEntity, Int) -> Unit
+):
+    RecyclerView.Adapter<GRNItemsAdapter.MyViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -21,7 +24,7 @@ class GRNItemsAdapter(private  var grnData:List<GrnItemsEntity>): RecyclerView.A
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         grnData[position].let {
-            holder.bind(it)
+            holder.bind(it,position,onItemDltClicked)
         }
 
     }
@@ -29,18 +32,19 @@ class GRNItemsAdapter(private  var grnData:List<GrnItemsEntity>): RecyclerView.A
     class MyViewHolder(private val binding: GrnItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(user: GrnItemsEntity) {
+        fun bind(
+            data: GrnItemsEntity,
+            position: Int,
+            onItemDltClicked: (data: GrnItemsEntity, position: Int) -> Unit
+        ) {
             binding.apply {
-//            data = user
-                binding.apply {
-                    user.apply {
-                        edt.text = Name
-                        emailTextView.text = "Email : $email"
-                        userTextField.text = "Mob : $mobile"
+                itemData = data
+                    closeBtn.setOnClickListener {
+                        onItemDltClicked(data,position)
                     }
 
-                }
             }
         }
+
     }
 }

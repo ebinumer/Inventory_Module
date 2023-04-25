@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.ebinumer.inventorymodule.utils.Converters
 
-@Database(entities = [RegisterEntity::class,GrnEntity::class], version = 1, exportSchema = false)
+@Database(entities = [RegisterEntity::class,GrnEntity::class], version = 2, exportSchema = true)
+@TypeConverters(Converters::class)
 abstract class InventoryDatabase : RoomDatabase() {
 
     abstract val registerDatabaseDao: RegisterDatabaseDao

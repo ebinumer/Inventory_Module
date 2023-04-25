@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ebinumer.inventorymodule.data.dataBase.RegisterRepository
 
-class UserDetailsViewModel (private val repository: RegisterRepository, application: Application):
+class HomeViewModel (private val repository: RegisterRepository, application: Application):
     AndroidViewModel(application){
 
     val users = repository.users

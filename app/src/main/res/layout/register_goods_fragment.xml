@@ -1,72 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.ebinumer.inventorymodule.viewModel.RegisterGrnViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="start"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edt_layout_grn_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:hint="GRN Number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconTint="@android:color/darker_gray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_grn_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@={viewmodel.inputGrnNumber}"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edt_layout_grn_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:hint="GRN Date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_layout_grn_number"
+                app:startIconTint="@android:color/darker_gray"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_grn_date"
+                    android:layout_width="match_parent"
+                    android:text="@={viewmodel.inputGrnDate}"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Item 1" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Add items" />
 
-            <ImageView
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_grn_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/btn_add"
+                tools:itemCount="3"
+                tools:listitem="@layout/grn_item" />
+            <Button
+                android:id="@+id/btn_save"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_gravity="end"
-                android:layout_marginStart="50dp"
-                android:src="@drawable/ic_close_24" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Save" />
 
         </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_layout_grn_item_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Item code"
-            app:startIconTint="@android:color/darker_gray">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_grn_item_code"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_layout_item_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:hint="Item Name"
-            app:startIconTint="@android:color/darker_gray">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_grn_item_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_layout_grn_item_qty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:hint="Item Quantity"
-            app:startIconTint="@android:color/darker_gray">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_grn_item_qty"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

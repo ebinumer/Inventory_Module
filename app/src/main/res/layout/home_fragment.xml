@@ -7,7 +7,7 @@
     <data>
         <variable
             name="userDelailsLayout"
-            type="com.ebinumer.inventorymodule.viewModel.UserDetailsViewModel" />
+            type="com.ebinumer.inventorymodule.viewModel.HomeViewModel" />
     </data>
 
     <LinearLayout

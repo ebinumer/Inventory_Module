@@ -10,7 +10,7 @@ data class GrnEntity (
     var id: Int = 0,
 
     @ColumnInfo(name = "grn_number")
-    var GrnNumber: Int,
+    var GrnNumber: String,
 
     @ColumnInfo(name = "grn_date")
     var GrnDate: String,
@@ -28,5 +28,5 @@ data class GrnItemsEntity (
     var GrnItemName: String,
 
     @ColumnInfo(name = "grn_items_qty")
-    var GrnItemsQty: Int
+    var GrnItemsQty: String
 )
