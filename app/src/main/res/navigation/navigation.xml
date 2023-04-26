@@ -37,8 +37,11 @@
         tools:layout="@layout/home_fragment">
 
         <action
-            android:id="@+id/action_userDetailsFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@+id/loginFragment"
+            app:popUpToInclusive="true"/>
+            />
         <action
             android:id="@+id/action_homeFragment_to_registerGoodsFragment"
             app:destination="@id/registerGoodsFragment" />

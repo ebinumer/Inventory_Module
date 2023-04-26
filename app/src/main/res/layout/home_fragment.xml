@@ -14,6 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <ImageView
+            android:id="@+id/btn_logout"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_logout_24"
+            android:layout_gravity="end"
+            android:layout_margin= "20dp"
+            />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/add_grn"
@@ -45,7 +53,7 @@
                     android:gravity="center"
                     android:text="Register"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="17sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/textView9"
@@ -61,7 +69,7 @@
                     android:gravity="start"
                     android:text="To Register Goods Receiving \nClick here"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -110,7 +118,7 @@
                     android:gravity="center"
                     android:text="View GRN"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="17sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/textView19"
@@ -126,7 +134,7 @@
                     android:gravity="center"
                     android:text="To View GRN Click here"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />

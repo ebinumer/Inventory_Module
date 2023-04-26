@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ebinumer.inventorymodule.R
+import com.ebinumer.inventorymodule.adapter.GrnItemViewAdapter
 import com.ebinumer.inventorymodule.data.dataBase.GrnEntity
 import com.ebinumer.inventorymodule.data.dataBase.GrnItemsEntity
 import com.ebinumer.inventorymodule.data.dataBase.GrnRepository
@@ -25,6 +26,7 @@ class ViewGrnFragment : Fragment() {
     lateinit var mBinding: ViewGrnFragmentBinding
     var grnData: MutableList<GrnEntity> = mutableListOf<GrnEntity>()
     var spinnerId: Array<String> = emptyArray()
+
 
 
     override fun onCreateView(
@@ -73,42 +75,41 @@ class ViewGrnFragment : Fragment() {
 
     }
 
-    fun initSpinner() {
+    private fun initSpinner() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Select an option")
         builder.setItems(spinnerId) { dialog, which ->
-            mBinding.edtGrnNumber.setText(spinnerId[which])
+            mBinding.apply {
+                edtGrnNumber.setText(spinnerId[which])
+                viewItems.visibility = View.VISIBLE
+            }
+
             setSelected(which)
+
         }
         builder.show()
 
     }
 
     private fun setSelected(which: Int) {
-       val selectedData = grnData[which]
-        mBinding.edtGrnDate.setText(selectedData.GrnDate)
-        mBinding.linearLayout.removeAllViews()
-        selectedData.GrnItems.forEachIndexed { index, grnItemsEntity ->
-            val GrnItemCodeTxt = TextView(requireContext())
-            val GrnItemNameTxt= TextView(requireContext())
-            val GrnItemsQtyTxt= TextView(requireContext())
-            GrnItemCodeTxt.text = grnItemsEntity.GrnItemCode
-            mBinding.linearLayout.addView(GrnItemCodeTxt)
-            GrnItemNameTxt.text = grnItemsEntity.GrnItemName
-            mBinding.linearLayout.addView(GrnItemNameTxt)
-            GrnItemsQtyTxt.text = grnItemsEntity.GrnItemsQty
-            mBinding.linearLayout.addView(GrnItemsQtyTxt)
+       val  selectedData = grnData[which]
 
-
+        val grnItemsAdapter = GrnItemViewAdapter(selectedData.GrnItems) { data: GrnItemsEntity, position :Int ->
 
         }
+        mBinding.apply {
+            edtGrnDate.setText(selectedData.GrnDate)
+            viewRecycler.adapter = grnItemsAdapter
+        }
+
+
 
     }
 
 
     private fun observers() {
         viewViewModel.allGrn.observe(viewLifecycleOwner) {
-            Log.e("users", "${it}")
+            Log.e("items", "${it}")
             it.forEachIndexed { index, grnEntity ->
                 spinnerId += grnEntity.GrnNumber
                 grnData.add(grnEntity)

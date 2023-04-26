@@ -14,6 +14,7 @@ import com.ebinumer.inventorymodule.data.dataBase.InventoryDatabase
 import com.ebinumer.inventorymodule.data.dataBase.RegisterRepository
 import com.ebinumer.inventorymodule.databinding.RegisterHomeFragmentBinding
 import com.ebinumer.inventorymodule.factory.RegisterViewModelFactory
+import com.ebinumer.inventorymodule.utils.SessionManager
 import com.ebinumer.inventorymodule.utils.showSnackBar
 import com.ebinumer.inventorymodule.utils.showToast
 import com.ebinumer.inventorymodule.viewModel.RegisterViewModel
@@ -22,6 +23,7 @@ import com.ebinumer.inventorymodule.viewModel.RegisterViewModel
 class SignupFragment:Fragment() {
  private lateinit var registerViewModel: RegisterViewModel
  lateinit var mBinding : RegisterHomeFragmentBinding
+    lateinit var mSessionManager: SessionManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +43,7 @@ class SignupFragment:Fragment() {
         val dao = InventoryDatabase.getInstance(application).registerDatabaseDao
         val repository = RegisterRepository(dao)
         val factory = RegisterViewModelFactory(repository, application)
+        mSessionManager = SessionManager(requireContext())
 
         registerViewModel = ViewModelProvider(this, factory)[RegisterViewModel::class.java]
         mBinding.apply {
@@ -53,7 +56,8 @@ class SignupFragment:Fragment() {
     }
 
     private fun displayUsersList() {
-        NavHostFragment.findNavController(this).navigate(SignupFragmentDirections.actionRegisterFragmentToLogin())
+        mSessionManager.appOpenStatus = true
+        NavHostFragment.findNavController(this).navigate(SignupFragmentDirections.actionRegisterFragmentToUserDetailsFragment())
 
     }
 
